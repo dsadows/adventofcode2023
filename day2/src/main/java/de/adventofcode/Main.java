@@ -37,7 +37,7 @@ public class Main {
                                 
                 """);
 
-        Map<Integer, Map<String, Integer>> listOfDrawsPerGame = bagOfCubesReader.countColorsWithOrderedGames("day2/src/main/resources/input.txt");
+        Map<Integer, Map<String, Integer>> listOfDrawsPerGame = BagOfCubesReader.countColorsWithOrderedGames("day2/src/main/resources/testinput.txt");
 
         int sumOfPossibleGames = getSumOfPossibleGames(listOfDrawsPerGame);
 
@@ -59,6 +59,7 @@ public class Main {
                 sumOfPossibleGames += gameNumber;
             }
         }
+
         return sumOfPossibleGames;
     }
 }

@@ -1,20 +1,19 @@
 package de.adventofcode;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class bagOfCubesReader {
+public class BagOfCubesReader {
 
     public static Map<Integer, Map<String, Integer>> countColorsWithOrderedGames(String filePath) {
         Map<Integer, Map<String, Integer>> gameColorCount = new LinkedHashMap<>();
+        int gameNumber = 1;
+
         try {
             Path path = Paths.get(filePath);
             String content = Files.readString(path);
@@ -27,16 +26,22 @@ public class bagOfCubesReader {
                     String[] draws = round.trim().split(";");
 
                     for (String draw : draws) {
-                        String[] parts = draw.trim().split(" ");
-                        String color = parts[1];
-                        int count = Integer.parseInt(parts[0]);
+                        String[] individualDraws = draw.trim().split(", ");
 
-                        if (!gameColorCount.containsKey(gameNumber)) {
-                            gameColorCount.put(gameNumber, new HashMap<>());
+                        for(String individualDraw : individualDraws){
+                            String[] parts = individualDraw.trim().split(" ");
+
+                            if (!gameColorCount.containsKey(gameNumber)) {
+                                gameColorCount.put(gameNumber, new HashMap<>());
+                            }
+
+                            if(!parts[0].equals("Game")) {
+                                String color = parts[1];
+                                int count = Integer.parseInt(parts[0]);
+                                Map<String, Integer> colorCount = gameColorCount.get(gameNumber);
+                                colorCount.put(color, colorCount.getOrDefault(color, 0) + count);
+                            }
                         }
-
-                        Map<String, Integer> colorCount = gameColorCount.get(gameNumber);
-                        colorCount.put(color, colorCount.getOrDefault(color, 0) + count);
                     }
                 }
                 gameNumber++;
