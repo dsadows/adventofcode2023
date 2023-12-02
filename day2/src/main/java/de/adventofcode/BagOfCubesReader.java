@@ -15,7 +15,6 @@ public class BagOfCubesReader {
         Map<Integer, Map<String, Integer>> drawColorCount = new LinkedHashMap<>();
         Map<Integer, Map<Integer, Map<String, Integer>>> gameColorCount = new LinkedHashMap<>();
 
-
         try {
             Path path = Paths.get(filePath);
             String content = Files.readString(path);
@@ -26,10 +25,7 @@ public class BagOfCubesReader {
             for (String game : games) {
                 String[] rounds = game.split(":");
 
-                int roundNumber = 1;
-
                 for (String round : rounds) {
-                    Map<String, Integer> colorCount = new HashMap<>();
                     String[] draws = round.trim().split(";");
 
                     int drawNumber = 1;
@@ -40,28 +36,26 @@ public class BagOfCubesReader {
                         for (String individualDraw : individualDraws) {
                             String[] parts = individualDraw.trim().split(" ");
 
-                            if (!parts[0].equals("Game")) {
-                                String color = parts[1];
-                                int count = Integer.parseInt(parts[0]);
-
-                                if (!drawColorCount.containsKey(color)) {
-                                    drawColorCount.put(color, new HashMap<>());
-                                }
-                                if (!gameColorCount.containsKey(drawNumber)) {
-                                    gameColorCount.put(roundNumber, drawColorCount);
-                                }
-
-                                colorCount.put(color, colorCount.getOrDefault(color, 0) + count);
-                                drawColorCount.put(roundNumber, colorCount);
-                                gameColorCount.put(gameNumber, drawColorCount);
+                            if (!drawColorCount.containsKey(drawNumber)) {
+                                drawColorCount.put(drawNumber, new HashMap<>());
                             }
 
-                            Map<Integer, Integer> gamesCount = colorGamesCount.get(color);
-                            gamesCount.put(gameNumber, gamesCount.getOrDefault(gameNumber, 0) + count);
+                            if (!gameColorCount.containsKey(gameNumber)) {
+                                if (!gameColorCount.containsValue(drawColorCount))
+                                    gameColorCount.put(gameNumber, drawColorCount);
+                                else
+                                    gameColorCount.put(gameNumber, new HashMap<>());
+                            }
+
+                            if(!parts[0].equals("Game")) {
+                                String color = parts[1];
+                                int count = Integer.parseInt(parts[0]);
+                                Map<String, Integer> colorCount = drawColorCount.get(drawNumber);
+                                colorCount.put(color, colorCount.getOrDefault(color, 0) + count);
+                            }
                         }
                         drawNumber++;
                     }
-                    roundNumber++;
                 }
                 gameNumber++;
             }
