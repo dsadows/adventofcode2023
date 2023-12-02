@@ -106,7 +106,7 @@ public class Main {
                                 
                 """);
 
-        listOfStrings = FileToArrayProvider.writeFileLinesToStringArray("day1/src/main/resources/testinput.txt");
+        listOfStrings = FileToArrayProvider.writeFileLinesToStringArray("day1/src/main/resources/input.txt");
         listOfNumbers = new ArrayList<>();
         ArrayList<String> listOfStringNumbers = new ArrayList<>();
 
@@ -126,19 +126,19 @@ public class Main {
             StringBuilder removedFirstPart = new StringBuilder();
             StringBuilder removedLastPart = new StringBuilder();
             String reversedLine = new StringBuilder(line).reverse().toString();
-            char firstDigit = ' ';
-            char lastDigit = ' ';
+            Integer firstDigit = null;
+            Integer lastDigit = null;
 
             while (!line.isEmpty()) {
                 char firstCharacter = line.charAt(0);
-                if (listOfStringNumbers.contains(removedFirstPart.toString())) {
-                    firstDigit = (char) getNumberFromWroteInFull(removedFirstPart.toString());
+                if (getNumberFromWroteInFull(removedFirstPart.toString()) != null) {
+                    firstDigit = getNumberFromWroteInFull(removedFirstPart.toString());
                     System.out.println("The first digit is: " + firstDigit);
                     removedFirstPart = new StringBuilder();
                     break;
                 }
                 if (Character.isDigit(firstCharacter)) {
-                    firstDigit = firstCharacter;
+                    firstDigit = Integer.parseInt(String.valueOf(firstCharacter));
                     System.out.println("The first digit is: " + firstDigit);
                     removedFirstPart = new StringBuilder();
                     break;
@@ -149,14 +149,14 @@ public class Main {
 
             while (!reversedLine.isEmpty()) {
                 char firstCharacter = reversedLine.charAt(0);
-                if (listOfStrings.contains(removedLastPart.toString())) {
-                    firstDigit = (char) getNumberFromWroteInFull(removedFirstPart.toString());
+                if (getNumberFromWroteInFullBackwards(removedLastPart.toString(), removedLastPart.length()) != null) {
+                    lastDigit = getNumberFromWroteInFullBackwards(removedLastPart.toString(), removedLastPart.length());
                     System.out.println("The last digit is: " + lastDigit);
                     removedLastPart = new StringBuilder();
                     break;
                 }
                 if (Character.isDigit(firstCharacter)) {
-                    lastDigit = firstCharacter;
+                    lastDigit = Integer.parseInt(String.valueOf(firstCharacter));
                     System.out.println("The last digit is: " + lastDigit);
                     removedLastPart = new StringBuilder();
                     break;
@@ -165,7 +165,7 @@ public class Main {
                 reversedLine = reversedLine.substring(1);
             }
 
-            if (Character.isDigit(firstDigit) && Character.isDigit(lastDigit)) {
+            if (firstDigit != null && lastDigit != null) {
                 listOfNumbers.add(Integer.parseInt(String.valueOf(firstDigit) + String.valueOf(lastDigit)));
                 System.out.println("The number is: " + String.valueOf(firstDigit) + String.valueOf(lastDigit));
             }
@@ -175,48 +175,91 @@ public class Main {
 
         for (int number : listOfNumbers) {
             newSum += number;
-            System.out.println("New value of the sum is: " + newSum);
         }
 
         System.out.println("The new sum of all of the calibration values is: " + newSum);
 
     }
 
-    private static int getNumberFromWroteInFull(String wroteInFullNumber){
-        switch (wroteInFullNumber) {
-            case "zero" -> {
-                return 0;
-            }
-            case "one" -> {
-                return 1;
-            }
-            case "two" -> {
-                return 2;
-            }
-            case "three" -> {
-                return 3;
-            }
-            case "four" -> {
-                return 4;
-            }
-            case "five" -> {
-                return 5;
-            }
-            case "six" -> {
-                return 6;
-            }
-            case "seven" -> {
-                return 7;
-            }
-            case "eight" -> {
-                return 8;
-            }
-            case "nine" -> {
-                return 9;
-            }
-            default -> {
-                return -1;
+    private static Integer getNumberFromWroteInFull(String wroteInFullNumber){
+        if(!wroteInFullNumber.isEmpty()){
+            switch (wroteInFullNumber) {
+                case "zero" -> {
+                    return 0;
+                }
+                case "one" -> {
+                    return 1;
+                }
+                case "two" -> {
+                    return 2;
+                }
+                case "three" -> {
+                    return 3;
+                }
+                case "four" -> {
+                    return 4;
+                }
+                case "five" -> {
+                    return 5;
+                }
+                case "six" -> {
+                    return 6;
+                }
+                case "seven" -> {
+                    return 7;
+                }
+                case "eight" -> {
+                    return 8;
+                }
+                case "nine" -> {
+                    return 9;
+                }
+                default -> {
+                    return getNumberFromWroteInFull(wroteInFullNumber.substring(1));
+                }
             }
         }
+        return null;
+    }
+
+    private static Integer getNumberFromWroteInFullBackwards(String wroteInFullNumber, int length){
+        if(!wroteInFullNumber.isEmpty()){
+            switch (wroteInFullNumber) {
+                case "zero" -> {
+                    return 0;
+                }
+                case "one" -> {
+                    return 1;
+                }
+                case "two" -> {
+                    return 2;
+                }
+                case "three" -> {
+                    return 3;
+                }
+                case "four" -> {
+                    return 4;
+                }
+                case "five" -> {
+                    return 5;
+                }
+                case "six" -> {
+                    return 6;
+                }
+                case "seven" -> {
+                    return 7;
+                }
+                case "eight" -> {
+                    return 8;
+                }
+                case "nine" -> {
+                    return 9;
+                }
+                default -> {
+                    return getNumberFromWroteInFullBackwards(wroteInFullNumber.substring(0, length - 1), length - 1);
+                }
+            }
+        }
+        return null;
     }
 }

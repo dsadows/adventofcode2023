@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c1ba1e8-feb2-4b9f-9bc4-82641772dd5f" name="Changes" comment="Initial commit.">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/day1/src/main/java/de/adventofcode/FileToArrayProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/day1/src/main/resources/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/adventofcode/FileToArrayProvider.java" afterDir="false" />
+    <list default="true" id="6c1ba1e8-feb2-4b9f-9bc4-82641772dd5f" name="Changes" comment="Day 1.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/day1/src/main/java/de/adventofcode/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/day1/src/main/java/de/adventofcode/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day1/src/main/resources/testinput.txt" beforeDir="false" afterPath="$PROJECT_DIR$/day1/src/main/resources/testinput.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701520421050</updated>
-      <workItem from="1701520421968" duration="8239000" />
+      <workItem from="1701520421968" duration="14760000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -98,7 +95,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701524524160</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Day 1.">
+      <option name="closed" value="true" />
+      <created>1701532032525</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701532032525</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,7 +122,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit." />
+    <MESSAGE value="Day 1." />
+    <option name="LAST_COMMIT_MESSAGE" value="Day 1." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -129,8 +135,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/day1/src/main/java/de/adventofcode/Main.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="7" />
+          <line>258</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
