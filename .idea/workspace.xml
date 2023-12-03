@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c1ba1e8-feb2-4b9f-9bc4-82641772dd5f" name="Changes" comment="Day 5 (Part 1) finished.">
-      <change afterPath="$PROJECT_DIR$/day3/src/main/java/de/adventofcode/SpecialSymbol.java" afterDir="false" />
+    <list default="true" id="6c1ba1e8-feb2-4b9f-9bc4-82641772dd5f" name="Changes" comment="Day 5 (Part 2).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java" afterDir="false" />
     </list>
@@ -114,7 +113,7 @@
       <updated>1701520421050</updated>
       <workItem from="1701520421968" duration="19334000" />
       <workItem from="1701551959420" duration="13849000" />
-      <workItem from="1701589191124" duration="21411000" />
+      <workItem from="1701589191124" duration="23868000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -236,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701609502609</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Day 5 (Part 2).">
+      <option name="closed" value="true" />
+      <created>1701616913225</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701616913225</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +271,8 @@
     <MESSAGE value="Cosmetic changes + Main class for Day 3 created." />
     <MESSAGE value="Day 5." />
     <MESSAGE value="Day 5 (Part 1) finished." />
-    <option name="LAST_COMMIT_MESSAGE" value="Day 5 (Part 1) finished." />
+    <MESSAGE value="Day 5 (Part 2)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Day 5 (Part 2)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -281,8 +289,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java</url>
-          <line>91</line>
-          <option name="timeStamp" value="42" />
+          <line>120</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/day2/src/main/java/de/adventofcode/Main.java</url>

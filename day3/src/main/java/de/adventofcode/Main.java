@@ -115,8 +115,12 @@ public class Main {
 
         for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, rowCount - 1); i++) {
             for (int j = Math.max(0, column - 1); j <= Math.min(column + 1, columnCount - 1); j++) {
-                if (mapOfNumericValues[i][j] && (i != row || j != column) && !mapOfSpecialSymbols[i][j]) {
-                    adjacentNumbersCount++;
+                boolean counterRaisedInPreviousIteration = false;
+                if (i != row || j != column) { // Exclude the cell itself
+                    if (mapOfNumericValues[i][j] && !mapOfSpecialSymbols[i][j] && counterRaisedInPreviousIteration) {
+                        adjacentNumbersCount++;
+                        counterRaisedAt;
+                    }
                 }
             }
         }
@@ -130,80 +134,12 @@ public class Main {
 
         for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, rowCount - 1); i++) {
             for (int j = Math.max(0, column - 1); j <= Math.min(column + 1, columnCount - 1); j++) {
-                if (mapOfNumericValues[i][j] && (i != row || j != column)) {
+                if (mapOfNumericValues[i][j] && (i != row || j != column) && !mapOfNumericValues[i][j - 1] && !mapOfNumericValues[i - 1][j]) {
                     product *= Character.getNumericValue(array[i][j]);
                 }
             }
         }
         return product;
-    }
-
-    private static int getGearRatio(char[][] array, boolean[][] mapOfNumericValues, boolean[][] mapOfSpecialSymbols) {
-
-        int gearSum = 0;
-
-        int rowCount = array.length;
-        int columnCount = array[0].length;
-
-        for(int i = 0; i < rowCount; i++){
-            for(int j = 0; j < columnCount; j++) {
-                if(cellIsAsteriskSymbol(i, j, array)){
-                    gearSum += getGearRatioForAdjacentNumericValues(i, j, array, mapOfNumericValues);
-                }
-            }
-        }
-        return gearSum;
-    }
-
-    private static boolean cellIsAsteriskSymbol(int row, int column, char[][] array) {
-        return array[row][column] == '*';
-    }
-
-    private static int getGearRatioForAdjacentNumericValues(int row, int column, char[][] array, boolean[][] mapOfNumericValues) {
-        ArrayList<String> adjacentNumbersOfCurrentPosition = new ArrayList<>();
-
-        int rows = mapOfNumericValues.length;
-        int columns = mapOfNumericValues[0].length;
-
-        int gearRatio = 0;
-
-        for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, rows - 1); i++) {
-            for (int j = Math.max(0, column - 1); j <= Math.min(column + 1, columns - 1); j++) {
-                if (i != row || j != column) { // exclude the cell itself
-                    if (mapOfNumericValues[i][j]) {
-                        adjacentNumbersOfCurrentPosition.add(appendNeighboringCellsWithNumericValues(i, j, array, mapOfNumericValues).toString());
-
-                        if(j > column) {
-                            i++;
-                        }
-
-                        if(i > row) {
-                            j--;
-                        }
-
-                        if(j < column) {
-                            i--;
-                        }
-
-                        if(i < row) {
-                            j++;
-                        }
-                    }
-                }
-            }
-        }
-
-        if(adjacentNumbersOfCurrentPosition.size() >= 2) {
-            for (String adjacentNumber : adjacentNumbersOfCurrentPosition) {
-                if (gearRatio == 0) {
-                    gearRatio = Integer.parseInt(adjacentNumber);
-                } else {
-                    gearRatio *= Integer.parseInt(adjacentNumber);
-                }
-            }
-        }
-
-        return gearRatio;
     }
 
     private static ArrayList<String> getAdjacentNumbers(char[][] array, boolean[][] mapOfNumericValues, boolean[][] mapOfSpecialSymbols) {
