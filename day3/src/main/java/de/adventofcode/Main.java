@@ -63,257 +63,25 @@ public class Main {
 
         for(int i = 0; i < rowCount; i++){
             for(int j = 0; j < columnCount; j++) {
-                if(cellIsAdjacentToSpecialSymbol(i, j, mapOfSpecialSymbols)){
-                    if(appendNeighboringCellsWithNumericValues(i, j, mapOfNumericValues)){
-                        adjacentNumbers.addAll(getAdjacentNumbersOfCurrentPosition(i, j, array, mapOfNumericValues, mapOfSpecialSymbols));
-                    }
-                    adjacentNumbers.add(String.valueOf(array[i][j]));
-                }
-
-                if(i == 0 && j == 0) {
-                    if (mapOfNumericValues[i][j + 1] || mapOfNumericValues[i + 1][j] || mapOfNumericValues[i + 1][j + 1]) {
-                        StringBuilder adjacentNumbersOfCurrentPosition = new StringBuilder();
-                        for (int z = i; z < columnCount; z++) {
-                            if (!String.valueOf(array[i][z]).matches("\\d+")) {
-                                j = z;
-                                break;
-                            }
-                            adjacentNumbersOfCurrentPosition.append(String.valueOf(array[i][z]));
-                        }
-                        adjacentNumbers.add(adjacentNumbersOfCurrentPosition.toString());
-                    }
-                }
-
-                if(i == 0 && j != 0){
-                    if(!mapOfNumericValues[i][j-1]){
-                        if (mapOfNumericValues[i][(j == array.length - 1 ? j : j + 1)] || mapOfNumericValues[i + 1][j] || mapOfNumericValues[i + 1][(j == array.length - 1 ? j : j + 1)]) {
-                            StringBuilder adjacentNumbersOfCurrentPosition = new StringBuilder();
-                            for (int z = j; z < columnCount; z++) {
-                                if (!String.valueOf(array[i][z]).matches("\\d+")) {
-                                    j = z;
-                                    break;
-                                }
-                                adjacentNumbersOfCurrentPosition.append(String.valueOf(array[i][z]));
-                            }
-                            adjacentNumbers.add(adjacentNumbersOfCurrentPosition.toString());
-                        }
-                    }
-
-
-
-                    if(j <= array[0].length - 2){
-                        if(mapOfNumericValues[i][j+1]) {
-                            adjacentNumberFound = false;
-                            if(j < array[0].length - 3) {
-                                if (mapOfNumericValues[i][j + 2]) {
-                                    adjacentNumberFound = false;
-                                    for (int x = i; x < i + 1; x++) {
-                                        for (int y = j; y < (j == array.length - 2 ? j + 2 : j + 3); y++) {
-                                            if (mapOfSpecialSymbols[x][y]) {
-                                                adjacentNumbers.add(String.valueOf(array[i][j] + array[i][j + 1] + array[i][j + 2]));
-                                                adjacentNumberFound = true;
-                                                break;
-                                            }
-                                        }
-                                        if (adjacentNumberFound) {
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            for (int x = i; x < i + 1; x++) {
-                                for (int y = j; y < (j == array.length - 1 ? j + 1 : j + 2); y++) {
-                                    if (mapOfSpecialSymbols[x][y]) {
-                                        adjacentNumbers.add(String.valueOf(array[i][j] + array[i][j + 1]));
-                                        adjacentNumberFound = true;
-                                        break;
-                                    }
-                                }
-                                if (adjacentNumberFound) {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    for(int x = i; x < i + 1; x++){
-                        for(int y = j; y < (j == array.length ? j : j + 1); y++){
-                            if(mapOfSpecialSymbols[x][y]){
-                                adjacentNumbers.add(String.valueOf(array[i][j]));
-                                adjacentNumberFound = true;
-                                break;
-                            }
-                        }
-                        if(adjacentNumberFound){
-                            break;
-                        }
-                    }
-                }
-
-                if(i == 0 && j != 0){
-                    if(!mapOfNumericValues[i][j-1]){
-                        boolean adjacentNumberFound = false;
-                        if(j <= array[0].length - 2) {
-                            if (mapOfNumericValues[i][j + 1]) {
-                                adjacentNumberFound = false;
-                                if(j <= array[0].length - 3) {
-                                    if (mapOfNumericValues[i][j + 2]) {
-                                        adjacentNumberFound = false;
-                                        for (int x = i; x < i + 1; x++) {
-                                            for (int y = j - 1; y < (j == array.length - 2 ? j + 2 : j + 3); y++) {
-                                                if (mapOfSpecialSymbols[x][y]) {
-                                                    adjacentNumbers.add(String.valueOf(array[i][j] + array[i][j + 1] + array[i][j + 2]));
-                                                    adjacentNumberFound = true;
-                                                    break;
-                                                }
-                                            }
-                                            if (adjacentNumberFound) {
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                                for (int x = i; x < i + 1; x++) {
-                                    for (int y = j - 1; y < (j == array.length - 1 ? j + 1 : j + 2); y++) {
-                                        if (mapOfSpecialSymbols[x][y]) {
-                                            adjacentNumbers.add(String.valueOf(array[i][j] + array[i][j + 1]));
-                                            adjacentNumberFound = true;
-                                            break;
-                                        }
-                                    }
-                                    if (adjacentNumberFound) {
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        for(int x = i; x < i + 1; x++){
-                            for(int y = j - 1; y < (j == array.length ? j : j + 1); y++){
-                                if(mapOfSpecialSymbols[x][y]){
-                                    adjacentNumbers.add(String.valueOf(array[i][j]));
-                                    adjacentNumberFound = true;
-                                    break;
-                                }
-                            }
-                            if(adjacentNumberFound){
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if(i != 0 && j == 0){
-                    boolean adjacentNumberFound = false;
-                    if(j <= array[0].length - 2) {
-                        if (mapOfNumericValues[i][j + 1]) {
-                            adjacentNumberFound = false;
-                            if (j <= array[0].length - 3) {
-                                if (mapOfNumericValues[i][j + 2]) {
-                                    adjacentNumberFound = false;
-                                    for (int x = i - 1; x < i + 1; x++) {
-                                        for (int y = j; y < (j == array.length - 2 ? j + 2 : j + 3); y++) {
-                                            if (mapOfSpecialSymbols[x][y]) {
-                                                adjacentNumbers.add(String.valueOf(array[i][j] + array[i][j + 1] + array[i][j + 2]));
-                                                adjacentNumberFound = true;
-                                                break;
-                                            }
-                                        }
-                                        if (adjacentNumberFound) {
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            for (int x = i - 1; x < i + 1; x++) {
-                                for (int y = j; y < (j == array.length - 1 ? j + 1 : j + 2); y++) {
-                                    if (mapOfSpecialSymbols[x][y]) {
-                                        adjacentNumbers.add(String.valueOf(array[i][j] + array[i][j + 1]));
-                                        adjacentNumberFound = true;
-                                        break;
-                                    }
-                                }
-                                if (adjacentNumberFound) {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    for (int x = i - 1; x < i + 1; x++) {
-                        for (int y = j; y < (j == array.length ? j : j + 1); y++) {
-                            if (mapOfSpecialSymbols[x][y]) {
-                                adjacentNumbers.add(String.valueOf(array[i][j]));
-                                adjacentNumberFound = true;
-                                break;
-                            }
-                        }
-                        if (adjacentNumberFound) {
-                            break;
-                        }
-                    }
-
-                }
-
-                if(i != 0 && j != 0){
-                    if(!mapOfNumericValues[i][j-1]){
-                        boolean adjacentNumberFound = false;
-                        if(j <= array[i].length - 2) {
-                            if (mapOfNumericValues[i][j + 1]) {
-                                adjacentNumberFound = false;
-                                if(j <= array[i].length - 2) {
-                                    if (mapOfNumericValues[i][j + 2]) {
-                                        adjacentNumberFound = false;
-                                        for (int x = i - 1; x < i + 1; x++) {
-                                            for (int y = j - 1; y < (j == array.length - 2 ? j + 2 : j + 3); y++) {
-                                                if (mapOfSpecialSymbols[x][y]) {
-                                                    adjacentNumbers.add(String.valueOf(array[i][j] + array[i][j + 1] + array[i][j + 2]));
-                                                    adjacentNumberFound = true;
-                                                    break;
-                                                }
-                                            }
-                                            if (adjacentNumberFound) {
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                                for (int x = i - 1; x < i + 1; x++) {
-                                    for (int y = j - 1; y < (j == array.length - 1 ? j + 1 : j + 2); y++) {
-                                        if (mapOfSpecialSymbols[x][y]) {
-                                            adjacentNumbers.add(String.valueOf(array[i][j] + array[i][j + 1]));
-                                            adjacentNumberFound = true;
-                                            break;
-                                        }
-                                    }
-                                    if (adjacentNumberFound) {
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        for(int x = i - 1; x < i + 1; x++){
-                            for(int y = j - 1; y < (j == array.length ? j : j + 1); y++){
-                                if(mapOfSpecialSymbols[x][y]){
-                                    adjacentNumbers.add(String.valueOf(array[i][j]));
-                                    adjacentNumberFound = true;
-                                    break;
-                                }
-                            }
-                            if(adjacentNumberFound){
-                                break;
-                            }
-                        }
-                    }
+                if(cellIsNumericAndAdjacentToSpecialSymbol(i, j, mapOfSpecialSymbols)){
+                    StringBuilder stringBuilder = appendNeighboringCellsWithNumericValues(i, j, array, mapOfNumericValues);
+                    adjacentNumbers.add(String.valueOf(stringBuilder));
                 }
             }
         }
         return adjacentNumbers;
     }
 
-    private static StringBuilder appendNeighboringCellsWithNumericValues(int i, int j, String ,boolean[][] mapOfNumericValues) {
+    private static StringBuilder appendNeighboringCellsWithNumericValues(int i, int j, char[][] array ,boolean[][] mapOfNumericValues) {
         StringBuilder adjacentNumbersOfCurrentPosition = new StringBuilder();
+        adjacentNumbersOfCurrentPosition.append(array[i][j]);
+
+        int colCount = array[0].length;
+
         for(int x = i; x == i; x++){
             for(int y = j; y < (j < mapOfNumericValues[0].length ? j + 1 : j); y++){
                 if(mapOfNumericValues[x][y]){
-                    adjacentNumbersOfCurrentPosition.append(String.valueOf(mapOfNumericValues[x][y]));
+                    adjacentNumbersOfCurrentPosition.append(String.valueOf(array[x][y]));
                 }
             }
         }
@@ -328,7 +96,7 @@ public class Main {
                 }
             }
         }
-
+        return false;
     }
 
     private static boolean[][] getPositionsOfSpecialSymbols(char[][] array) {

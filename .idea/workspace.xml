@@ -113,7 +113,7 @@
       <updated>1701520421050</updated>
       <workItem from="1701520421968" duration="19334000" />
       <workItem from="1701551959420" duration="13849000" />
-      <workItem from="1701589191124" duration="9841000" />
+      <workItem from="1701589191124" duration="10987000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -211,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701594078459</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Day 5.">
+      <option name="closed" value="true" />
+      <created>1701604110483</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701604110483</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,8 +263,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="30" />
+          <line>46</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/day2/src/main/java/de/adventofcode/Main.java</url>
