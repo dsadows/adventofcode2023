@@ -37,7 +37,7 @@ public class Main {
                                 
                 """);
 
-        Map<Integer, Map<Integer, Map<String, Integer>>> listOfDrawsPerGame = BagOfCubesReader.countColorsWithOrderedGames("day2/src/main/resources/testinput.txt");
+        Map<Integer, Map<Integer, Map<String, Integer>>> listOfDrawsPerGame = BagOfCubesReader.countColorsWithinGames("day2/src/main/resources/input.txt");
 
         int sumOfPossibleGames = getSumOfPossibleGames(listOfDrawsPerGame);
 
@@ -53,13 +53,18 @@ public class Main {
 
         for (Map.Entry<Integer, Map<Integer, Map<String, Integer>>> entry : listOfDrawsPerGame.entrySet()) {
             int gameNumber = entry.getKey();
+            boolean trueOrFalse = true;
 
             for (Map.Entry<Integer, Map<String, Integer>> entryRound : entry.getValue().entrySet()){
                 Map<String, Integer> colorCount = entryRound.getValue();
 
-                if (colorCount.getOrDefault("red", 0) <= redCubes || colorCount.getOrDefault("green", 0) <= greenCubes || colorCount.getOrDefault("blue", 0) <= blueCubes) {
-                    sumOfPossibleGames += gameNumber;
+                if (!(colorCount.getOrDefault("red", 0) <= redCubes && colorCount.getOrDefault("green", 0) <= greenCubes && colorCount.getOrDefault("blue", 0) <= blueCubes)) {
+                    trueOrFalse = false;
+                    break;
                 }
+            }
+            if(trueOrFalse){
+                sumOfPossibleGames += gameNumber;
             }
         }
         return sumOfPossibleGames;
