@@ -41,7 +41,7 @@ public class Main {
                                 
                 """);
 
-        char[][] array = TextFileToArrayReader.textFileToTwoDimensionalArray("day3/src/main/resources/testinput.txt");
+        char[][] array = TextFileToArrayReader.textFileToTwoDimensionalArray("day3/src/main/resources/input.txt");
         boolean [][] mapOfNumericValues = getPositionsOfNumericValue(array);
         boolean [][] mapOfSpecialSymbols = getPositionsOfSpecialSymbols(array);
 
@@ -100,7 +100,9 @@ public class Main {
         for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < columnCount; j++) {
                 if (array[i][j] == '*' && cellHasTwoAdjacentNumbers(i, j, mapOfNumericValues, mapOfSpecialSymbols)) {
-                    int product = calculateAdjacentNumbersProduct(i, j, array, mapOfNumericValues);
+                    System.out.println("Gear ratio found at position: " + i + ", " + j);
+                    System.out.println("Gear ratio: " + calculateAdjacentNumbersProduct(i, j, array, mapOfNumericValues));
+                    int product = Integer.parseInt(String.valueOf(calculateAdjacentNumbersProduct(i, j, array, mapOfNumericValues)));
                     gearRatioSum += product;
                 }
             }
@@ -113,18 +115,27 @@ public class Main {
         int rowCount = mapOfNumericValues.length;
         int columnCount = mapOfNumericValues[0].length;
 
+        int lastColumnDiscovery = 0;
+
         for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, rowCount - 1); i++) {
             for (int j = Math.max(0, column - 1); j <= Math.min(column + 1, columnCount - 1); j++) {
-                boolean counterRaisedInPreviousIteration = false;
+
+                if(lastColumnDiscovery == j - 1){
+                    if (mapOfNumericValues[i][j] && !mapOfSpecialSymbols[i][j]) {
+                        lastColumnDiscovery = j;
+                    }
+                    continue;
+                }
+
                 if (i != row || j != column) { // Exclude the cell itself
-                    if (mapOfNumericValues[i][j] && !mapOfSpecialSymbols[i][j] && counterRaisedInPreviousIteration) {
+                    if (mapOfNumericValues[i][j] && !mapOfSpecialSymbols[i][j]) {
                         adjacentNumbersCount++;
-                        counterRaisedAt;
+                        lastColumnDiscovery = j;
                     }
                 }
             }
         }
-        return adjacentNumbersCount == 2;
+        return adjacentNumbersCount >= 2;
     }
 
     private static int calculateAdjacentNumbersProduct(int row, int column, char[][] array, boolean[][] mapOfNumericValues) {
@@ -132,10 +143,21 @@ public class Main {
         int rowCount = array.length;
         int columnCount = array[0].length;
 
+        int lastColumnDiscovery = 0;
+
         for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, rowCount - 1); i++) {
             for (int j = Math.max(0, column - 1); j <= Math.min(column + 1, columnCount - 1); j++) {
-                if (mapOfNumericValues[i][j] && (i != row || j != column) && !mapOfNumericValues[i][j - 1] && !mapOfNumericValues[i - 1][j]) {
-                    product *= Character.getNumericValue(array[i][j]);
+
+                if(lastColumnDiscovery == j - 1){
+                    if (mapOfNumericValues[i][j]) {
+                        lastColumnDiscovery = j;
+                    }
+                    continue;
+                }
+
+                if (mapOfNumericValues[i][j] && (i != row || j != column)) {
+                    product *= Integer.parseInt(appendNeighboringCellsWithNumericValues(i, j, array, mapOfNumericValues).toString());
+                    lastColumnDiscovery = j;
                 }
             }
         }
@@ -182,7 +204,7 @@ public class Main {
         int cols = array[0].length;
 
         for (int y = j; y < cols; y++) {
-            if (y >= 0 && y < cols && mapOfNumericValues[i][y]) {
+            if (y >= 0 && mapOfNumericValues[i][y]) {
                 adjacentNumbersOfCurrentPosition.append(array[i][y]);
             } else {
                 break;
@@ -190,7 +212,7 @@ public class Main {
         }
 
         for (int y = j - 1; y >= 0; y--) {
-            if (y >= 0 && y < cols && mapOfNumericValues[i][y]) {
+            if (y < cols && mapOfNumericValues[i][y]) {
                 adjacentNumbersOfCurrentPosition.insert(0, array[i][y]);
             } else {
                 break;
