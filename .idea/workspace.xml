@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c1ba1e8-feb2-4b9f-9bc4-82641772dd5f" name="Changes" comment="Day 2 (Part 2) finished." />
+    <list default="true" id="6c1ba1e8-feb2-4b9f-9bc4-82641772dd5f" name="Changes" comment="Day 3 module created.">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day1/src/main/java/de/adventofcode/FileToArrayProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/day1/src/main/java/de/adventofcode/FileToArrayProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day2/src/main/java/de/adventofcode/BagOfCubesReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/day2/src/main/java/de/adventofcode/BagOfCubesReader.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,23 +34,23 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/danielsadowski/IdeaProjects/adventofcode2023/day1/src/main/java/de/adventofcode&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/danielsadowski/IdeaProjects/adventofcode2023/day2/src/main/java/de/adventofcode/Main.java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "last_opened_file_path": "/Users/danielsadowski/IdeaProjects/adventofcode2023/day1/src/main/java/de/adventofcode",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "/Users/danielsadowski/IdeaProjects/adventofcode2023/day3/src/main/java/de/adventofcode/Main.java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/day1/src/main/java/de/adventofcode" />
@@ -96,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701520421050</updated>
       <workItem from="1701520421968" duration="19334000" />
-      <workItem from="1701551959420" duration="12851000" />
+      <workItem from="1701551959420" duration="13636000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -170,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701564810861</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Day 3 module created.">
+      <option name="closed" value="true" />
+      <created>1701564921204</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1701564921204</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +206,8 @@
     <MESSAGE value="Day 2." />
     <MESSAGE value="Day 2 (Part 1) finished." />
     <MESSAGE value="Day 2 (Part 2) finished." />
-    <option name="LAST_COMMIT_MESSAGE" value="Day 2 (Part 2) finished." />
+    <MESSAGE value="Day 3 module created." />
+    <option name="LAST_COMMIT_MESSAGE" value="Day 3 module created." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -208,6 +221,11 @@
           <url>file://$PROJECT_DIR$/day1/src/main/java/de/adventofcode/Main.java</url>
           <line>258</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/day2/src/main/java/de/adventofcode/Main.java</url>
