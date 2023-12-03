@@ -101,8 +101,8 @@ public class Main {
             for (int j = 0; j < columnCount; j++) {
                 if (array[i][j] == '*' && cellHasTwoAdjacentNumbers(i, j, mapOfNumericValues, mapOfSpecialSymbols)) {
                     System.out.println("Gear ratio found at position: " + i + ", " + j);
-                    System.out.println("Gear ratio: " + calculateAdjacentNumbersProduct(i, j, array, mapOfNumericValues));
-                    int product = Integer.parseInt(String.valueOf(calculateAdjacentNumbersProduct(i, j, array, mapOfNumericValues)));
+                    System.out.println("Gear ratio: " + calculateAdjacentNumbersProduct(i, j, array, mapOfNumericValues, mapOfSpecialSymbols));
+                    int product = Integer.parseInt(String.valueOf(calculateAdjacentNumbersProduct(i, j, array, mapOfNumericValues, mapOfSpecialSymbols)));
                     gearRatioSum += product;
                 }
             }
@@ -116,48 +116,52 @@ public class Main {
         int columnCount = mapOfNumericValues[0].length;
 
         int lastColumnDiscovery = 0;
+        int lastRowDiscovery = 0;
 
         for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, rowCount - 1); i++) {
             for (int j = Math.max(0, column - 1); j <= Math.min(column + 1, columnCount - 1); j++) {
 
-                if(lastColumnDiscovery == j - 1){
+                if((lastColumnDiscovery == j - 1 && lastRowDiscovery == i) || (lastColumnDiscovery == j && lastRowDiscovery == i - 1)){
                     if (mapOfNumericValues[i][j] && !mapOfSpecialSymbols[i][j]) {
                         lastColumnDiscovery = j;
+                        lastRowDiscovery = i;
                     }
                     continue;
                 }
 
-                if (i != row || j != column) { // Exclude the cell itself
-                    if (mapOfNumericValues[i][j] && !mapOfSpecialSymbols[i][j]) {
-                        adjacentNumbersCount++;
-                        lastColumnDiscovery = j;
-                    }
+                if (mapOfNumericValues[i][j] && !mapOfSpecialSymbols[i][j]) {
+                    adjacentNumbersCount++;
+                    lastColumnDiscovery = j;
+                    lastRowDiscovery = i;
                 }
             }
         }
-        return adjacentNumbersCount >= 2;
+        return adjacentNumbersCount == 2;
     }
 
-    private static int calculateAdjacentNumbersProduct(int row, int column, char[][] array, boolean[][] mapOfNumericValues) {
+    private static int calculateAdjacentNumbersProduct(int row, int column, char[][] array, boolean[][] mapOfNumericValues, boolean[][] mapOfSpecialSymbols) {
         int product = 1;
         int rowCount = array.length;
         int columnCount = array[0].length;
 
         int lastColumnDiscovery = 0;
+        int lastRowDiscovery = 0;
 
         for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, rowCount - 1); i++) {
             for (int j = Math.max(0, column - 1); j <= Math.min(column + 1, columnCount - 1); j++) {
 
-                if(lastColumnDiscovery == j - 1){
+                if((lastColumnDiscovery == j - 1 && lastRowDiscovery == i) || (lastColumnDiscovery == j && lastRowDiscovery == i - 1)){
                     if (mapOfNumericValues[i][j]) {
                         lastColumnDiscovery = j;
+                        lastRowDiscovery = i;
                     }
                     continue;
                 }
 
-                if (mapOfNumericValues[i][j] && (i != row || j != column)) {
+                if (mapOfNumericValues[i][j]) {
                     product *= Integer.parseInt(appendNeighboringCellsWithNumericValues(i, j, array, mapOfNumericValues).toString());
                     lastColumnDiscovery = j;
+                    lastRowDiscovery = i;
                 }
             }
         }

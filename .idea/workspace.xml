@@ -7,6 +7,7 @@
     <list default="true" id="6c1ba1e8-feb2-4b9f-9bc4-82641772dd5f" name="Changes" comment="Day 3 (Part 2).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day3/src/main/java/de/adventofcode/SpecialSymbol.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +114,7 @@
       <updated>1701520421050</updated>
       <workItem from="1701520421968" duration="19334000" />
       <workItem from="1701551959420" duration="13849000" />
-      <workItem from="1701589191124" duration="30158000" />
+      <workItem from="1701589191124" duration="38979000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <option name="closed" value="true" />
@@ -251,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701620099722</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Day 3 (Part 2).">
+      <option name="closed" value="true" />
+      <created>1701631917575</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701631917575</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,24 +312,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java</url>
-          <line>112</line>
-          <properties class="de.adventofcode.Main" method="cellHasTwoAdjacentNumbers">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/day3/src/main/java/de/adventofcode/Main.java</url>
-          <line>140</line>
-          <properties class="de.adventofcode.Main" method="calculateAdjacentNumbersProduct">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
