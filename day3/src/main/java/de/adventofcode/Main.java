@@ -41,7 +41,7 @@ public class Main {
                                 
                 """);
 
-        char[][] array = TextFileToArrayReader.textFileToTwoDimensionalArray("day3/src/main/resources/testinput.txt");
+        char[][] array = TextFileToArrayReader.textFileToTwoDimensionalArray("day3/src/main/resources/input.txt");
         boolean [][] mapOfNumericValues = getPositionsOfNumericValue(array);
         boolean [][] mapOfSpecialSymbols = getPositionsOfSpecialSymbols(array);
         ArrayList<String> adjacentNumbers = getAdjacentNumbers(array, mapOfNumericValues, mapOfSpecialSymbols);
@@ -63,8 +63,11 @@ public class Main {
 
         for(int i = 0; i < rowCount; i++){
             for(int j = 0; j < columnCount; j++) {
-                if(cellIsNumericAndAdjacentToSpecialSymbol(i, j, mapOfSpecialSymbols)){
+                System.out.println("Cell : " + array[i][j] + " i: " + i + " j: " + j + " mapOfNumericValues[i][j]: " + mapOfNumericValues[i][j] + " mapOfSpecialSymbols[i][j]: " + mapOfSpecialSymbols[i][j]);
+                if(mapOfNumericValues[i][j] && cellIsAdjacentToSpecialSymbol(i, j, mapOfSpecialSymbols)){
                     StringBuilder stringBuilder = appendNeighboringCellsWithNumericValues(i, j, array, mapOfNumericValues);
+                    System.out.println("Hat geklappt! " + stringBuilder);
+                    j = getColumnOfRightSidedNumericNeighbor(i, j, mapOfNumericValues);
                     adjacentNumbers.add(String.valueOf(stringBuilder));
                 }
             }
@@ -72,27 +75,56 @@ public class Main {
         return adjacentNumbers;
     }
 
+    private static int getColumnOfRightSidedNumericNeighbor(int i, int j, boolean[][] mapOfNumericValues) {
+        int rows = mapOfNumericValues.length;
+        int cols = mapOfNumericValues[0].length;
+
+        int columnOfRightSidedNumericNeighbor = j;
+
+        for(int y = j; y < cols; y++){
+            if(mapOfNumericValues[i][y]){
+                columnOfRightSidedNumericNeighbor = y;
+            } else {
+                break;
+            }
+        }
+        return columnOfRightSidedNumericNeighbor;
+    }
+
     private static StringBuilder appendNeighboringCellsWithNumericValues(int i, int j, char[][] array ,boolean[][] mapOfNumericValues) {
         StringBuilder adjacentNumbersOfCurrentPosition = new StringBuilder();
-        adjacentNumbersOfCurrentPosition.append(array[i][j]);
 
-        int colCount = array[0].length;
+        int cols = array[0].length;
 
-        for(int x = i; x == i; x++){
-            for(int y = j; y < (j < mapOfNumericValues[0].length ? j + 1 : j); y++){
-                if(mapOfNumericValues[x][y]){
-                    adjacentNumbersOfCurrentPosition.append(String.valueOf(array[x][y]));
-                }
+        for (int y = j; y < cols; y++) {
+            if (y >= 0 && y < cols && mapOfNumericValues[i][y]) {
+                adjacentNumbersOfCurrentPosition.append(array[i][y]);
+            } else {
+                break;
+            }
+        }
+
+        for (int y = j - 1; y >= 0; y--) {
+            if (y >= 0 && y < cols && mapOfNumericValues[i][y]) {
+                adjacentNumbersOfCurrentPosition.insert(0, array[i][y]);
+            } else {
+                break;
             }
         }
         return adjacentNumbersOfCurrentPosition;
     }
 
     private static boolean cellIsAdjacentToSpecialSymbol(int row, int column, boolean[][] mapOfSpecialSymbols){
-        for(int i = (row > 0 ? row - 1 : row); i < (row < mapOfSpecialSymbols[0].length ? row + 1 : row); i++){
-            for(int j = (column > 0 ? column - 1 : column); j < (column > 0 ? column + 1 : column); j++){
-                if(mapOfSpecialSymbols[i][j]){
-                    return true;
+
+        int rows = mapOfSpecialSymbols.length;
+        int columns = mapOfSpecialSymbols[0].length;
+
+        for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, rows - 1); i++) {
+            for (int j = Math.max(0, column - 1); j <= Math.min(column + 1, columns - 1); j++) {
+                if (i != row || j != column) { // exclude the cell itself
+                    if (mapOfSpecialSymbols[i][j]) {
+                        return true;
+                    }
                 }
             }
         }
